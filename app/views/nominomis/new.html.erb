@@ -1,0 +1,161 @@
+
+<div class="new-spot-wrapper">
+
+<h3>新規二軒目スポット</h3>
+<%= form_with(model: @nominomi, local: true) do |f| %>
+
+
+  <div class="field">
+    <%= f.label :spotname %>
+    <%= f.text_field :spotname, :size => 30 %>
+  </div>
+
+ <div class="field">
+    <%= f.label :time %>
+    <%= f.text_field :time, :size => 30 %>
+  </div>
+
+ <div class="field">
+    <%= f.label :seat %>
+    <%= f.text_field :seat, :size => 30 %>
+  </div>
+
+ <div class="field">
+    <%= f.label :menu %>
+    <%= f.text_field :menu, :size => 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tips  %>
+    <%= f.text_area :tips, :size => "30x2" %>
+  </div>
+
+ <div class="field">
+    <%= f.label :tabe %>
+    <%= f.text_field :tabe, :size => 30 %>
+  </div>
+
+ <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+
+
+    <%= f.select :area, [["西部", "seibu"], ["東部", "tobu"], ["副都心", "fukutoshin"], ["都心", "toshin"]], include_blank: "エリアを選択" %>
+
+
+  <div class='form-group'>
+        <%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :name) do |tag| %>
+            <div class='form-check'>
+                <%= tag.label class: 'form-check-label' do %>
+                    <%= tag.check_box class: 'form-check-input' %>
+                    <%= tag.text %>
+                <% end %>
+            </div>
+        <% end %>
+  </div>
+
+
+ <div class="field">
+    
+
+ </div>
+  
+
+    <div id='map'></div>
+
+
+<style>
+#map {
+  height: 600px;
+  width: 600px;
+}
+</style>
+  <script>
+    let map;
+    let marker;
+    let geocoder;
+    function initMap() {
+      geocoder = new google.maps.Geocoder();
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 35.6803997, lng: 139.7690174 }, // 東京
+        zoom: 11,
+      });
+    }
+    function loadGoogleMapsScript() {
+      if (window.google && window.google.maps) {
+        initMap();
+        return;
+      }
+      const script = document.createElement("script");
+      script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAf5A7EtO_oKEPwZw2nSI2LuH6qcraKrxE&callback=initMap";
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
+    function codeAddress() {
+      const inputAddress = document.getElementById('address').value;
+      geocoder.geocode({ address: inputAddress }, function (results, status) {
+        if (status === 'OK') {
+          if (marker) {
+            marker.setMap(null);
+          }
+          map.setCenter(results[0].geometry.location);
+          marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location,
+            draggable: true
+          });
+          document.getElementById('lat').value = results[0].geometry.location.lat();
+          document.getElementById('lng').value = results[0].geometry.location.lng();
+          google.maps.event.addListener(marker, 'dragend', function (ev) {
+            document.getElementById('lat').value = ev.latLng.lat();
+            document.getElementById('lng').value = ev.latLng.lng();
+          });
+        } else {
+          alert('該当する結果がありませんでした：' + status);
+        }
+      });
+    }
+    // ページが読み込まれたらGoogle Mapsスクリプトを読み込む
+    document.addEventListener("DOMContentLoaded", function () {
+      if (document.getElementById("map")) {
+        loadGoogleMapsScript();
+      }
+    });
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCig63KB2U0NRF2me-DsdqYN5EgPhXUHLU&callback=initMap" async defer></script>
+
+ 
+
+ <p>マップ検索で位置情報を登録（マーカーをドラック＆ドロップで位置の調整ができます。）<p>
+    <input id="address" type="textbox" placeholder="ここに場所名を入力">
+    <input type="button" value="検索" onclick="codeAddress()">
+
+   <br>
+
+   <div class="right-align-block">
+
+
+   <div class="latlng-wrapper">
+    <%= f.label :lat,"緯度" %>
+    <%= f.text_field :lat,placeholder: "Map検索すると設定", id: :lat %>
+
+    <%= f.label :lng,"経度" %>
+    <%= f.text_field :lng,placeholder: "Map検索すると設定", id: :lng %>
+    </div>
+
+    <br>
+
+   <%= f.submit "二軒目スポットを投稿する", class: "submit-btn" %>
+
+  </div>
+
+
+<% end %>
+
+
+</div>
+
+

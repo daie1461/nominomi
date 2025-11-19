@@ -1,0 +1,98 @@
+
+<h3>二軒目スポット詳細</h3>
+
+
+
+
+<div class="nominomi">
+
+  
+
+  <div class="left-container">
+       <p class="spot-name"><%= @nominomi.spotname %></p>
+
+        <p class="spot-item">
+          <span class="label">営業時間：</span>
+          <%= @nominomi.time %>
+        </p>
+
+        <p class="spot-item">
+          <span class="label">席数：</span>
+          <%= @nominomi.seat %>
+        </p>
+
+        <p class="spot-item">
+          <span class="label">メニュー：</span>
+          <%= @nominomi.menu %>
+        </p>
+
+        <p class="spot-item">
+          <span class="label">ひとこと：</span>
+          <%= @nominomi.tips %>
+        </p>
+
+        <p class="spot-item">
+          <%= link_to "食べログで見る", @nominomi.tabe,
+                      target: "_blank", rel: "noopener",
+                      class: "tabelog-link" %>
+        </p>
+
+        <p><%= @nominomi.created_at %></p>
+
+  </div>
+
+   <% if user_signed_in? %>
+      <% if current_user.already_liked?(@nominomi) %>
+        <%= link_to nominomi_like_path(@nominomi), method: :delete do %>
+          <i class="fas fa-heart"></i><%= @nominomi.likes.count %>
+        <% end %>
+      <% else %>
+        <%= link_to nominomi_likes_path(@nominomi), method: :post do %>
+          <i class="far fa-heart"></i><%= @nominomi.likes.count %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <i class="far fa-heart"></i><%= @nominomi.likes.count %>
+    <% end %>
+
+
+  <%= link_to "編集する", edit_nominomi_path(@nominomi.id) %>
+
+
+</div>
+
+<h3>いいねしたユーザー</h3>
+<% @nominomi.liked_users.each do |user| %>
+  <li><%= user.email %></li>
+<% end %>
+
+
+
+<div class="comment-wrapper">
+  <h3>コメント一覧</h3>
+  <% @comments.each do |c| %>
+    <div>
+      <%= c.user.email unless c.user.blank? %>
+      <br>
+      <%= c.content %>
+    </div>
+      <br>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= form_with(model: [@nominomi, @comment], local: true) do |f| %>
+      <%= f.text_area :content %>
+      <%= button_tag type: "submit" do %>
+        <i class="far fa-comments"></i> コメントする
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+
+<% @nominomi.tags.each do |tag| %>
+    <span><%= tag.name %></span>
+<% end %>
+
+
+

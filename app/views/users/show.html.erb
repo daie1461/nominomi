@@ -1,0 +1,50 @@
+<div class="profile-wrapper">
+
+<h1 class="mypage-title">プロフィール</h1>
+
+<p class="profile-item">
+    <span class="label">名前：</span>
+    <%= @user.name %>
+</p>
+
+<p class="profile-item">
+    <span class="label">メールアドレス：</span>
+    <%= @user.email %>
+</p>
+
+<p class="profile-item">
+    <span class="label">プロフィール：</span>
+    <%= @user.profile %>
+</p>
+
+
+<% if current_user.id == @user.id %>
+    <div class="profile-edit-wrapper">
+      <%= link_to "編集する", edit_user_registration_path, class: "profile-edit-btn" %>
+    </div>
+<% end %>
+
+</div>
+
+
+<div class="two-column-wrapper">
+
+  <!-- 左：いいねした投稿 -->
+  <div class="left-column">
+    <h2>いいねした投稿</h2>
+
+    <% @user.liked_nominomis.each do |t| %>
+      <%= render "nominomi_card", t: t %>  
+    <% end %>
+  </div>
+
+  <!-- 右：自分の投稿 -->
+  <div class="right-column">
+    <h2>投稿一覧</h2>
+
+    <% @user.nominomis.each do |t| %>
+      <%= render "nominomi_card", t: t %>  
+    <% end %>
+  </div>
+
+</div>

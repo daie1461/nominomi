@@ -1,0 +1,161 @@
+<h1 class="toshin-title">都心の二軒目スポット</h1>
+
+
+<!--<input id="address" type="textbox" >-->
+<!--<input type="button" value="検索" onclick="codeAddress()">-->
+<p class="map-description">ドラッグ&ズームで近くの二軒目スポットを見つける</p>
+
+<div id='map'></div>
+
+<style>
+#map {
+  height: 600px;
+  width: 600px;
+}
+</style>
+
+<script>
+  function initMap() {
+    // 初期位置
+    const center = { lat: 35.67172790000001, lng: 139.7644425 };
+    // マップの表示
+    const map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: center,
+      styles: [
+        { stylers: [{ "saturation": 0 }, { "lightness": 0 }] }
+      ]
+    });
+    const transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
+    // ====== 複数マーカー ======
+    <% @nominomis.each do |t| %>
+      
+        (function() {
+          const markerLatLng = { lat: <%= t.lat %>, lng: <%= t.lng %> };
+          const marker = new google.maps.Marker({
+            position: markerLatLng,
+            map: map
+          });
+          const infowindow = new google.maps.InfoWindow({
+            content: "<a href='<%= nominomi_path(t.id) %>' target='_blank'><%= t.spotname %></a>"
+          });
+          marker.addListener('click', () => {
+            infowindow.open(map, marker);
+          });
+        })();
+     
+    <% end %>
+  }
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCig63KB2U0NRF2me-DsdqYN5EgPhXUHLU&callback=initMap" async defer></script>
+
+
+
+<div class="nominomis-container">
+  
+
+<h2>二軒目スポット一覧</h2>
+
+<% @nominomis.each do |t| %>
+   <div class="nominomi">
+
+    <div class="main-box">
+
+    <!-- 画像用の枠：画像がなくてもこの枠は必ず存在させる -->
+     <div class="image-wrapper">
+      <% if t.image.attached? %>
+       <%= image_tag t.image, class: "spot-image" %>
+      <% end %>
+     </div>
+
+    <!-- 右側のテキスト＋ボタン部分をまとめる -->
+     <div class="content-wrapper">
+
+      <!--<%= link_to t.user.name, user_path(t.user.id) %>-->
+      <!--<%= t.user.email %>-->
+
+      <!--
+      <% if t.image.attached? %>
+            <%= image_tag t.image, width: 250, class: "spot-image" %>
+      <% end %>
+      -->
+
+
+      <div class="left-container">
+       <p class="spot-name"><%= t.spotname %></p>
+
+        <p class="spot-item">
+          <span class="label">営業時間：</span>
+          <%= t.time %>
+        </p>
+
+        <p class="spot-item">
+          <span class="label">席数：</span>
+          <%= t.seat %>
+        </p>
+
+        <p class="spot-item">
+          <span class="label">メニュー：</span>
+          <%= t.menu %>
+        </p>
+
+        <p class="spot-item">
+          <span class="label">ひとこと：</span>
+          <%= t.tips %>
+        </p>
+
+        <p class="spot-item">
+          <%= link_to "食べログで見る", t.tabe,
+                      target: "_blank", rel: "noopener",
+                      class: "tabelog-link" %>
+        </p>
+
+        </div>
+
+        <div class="right-container">
+
+          <% if user_signed_in? %>
+
+           <% if current_user.already_liked?(t) %>
+              <%= button_to nominomi_like_path(id: t.id, nominomi_id: t.id), method: :delete, class: "like-button" do %>
+              <i class="fa-regular fa-heart"></i><%= t.likes.count %>
+           <% end %>
+
+           <% else %>
+              <%= button_to nominomi_likes_path(id: t.id, nominomi_id: t.id), method: :post, class: "like-button" do %>
+              <i class="fa-regular fa-heart"></i><%= t.likes.count %>
+           <% end %>
+
+          <% end %>
+
+          <% else %>
+            <i class="fa-regular fa-heart"></i><%= t.likes.count %>
+          <% end %>              
+
+        
+         <%= link_to "詳細", nominomi_path(t.id), class: "action-button detail" %>
+         <% if user_signed_in? && current_user.id == t.user_id %>
+          <%= link_to "編集", edit_nominomi_path(t.id), class: "action-button edit" %>
+          <%= button_to "削除", nominomi_path(t.id), method: :delete, class: "action-button delete-btn" %> 
+         <% end %> 
+
+        </div>
+
+
+      
+
+      
+      </div>
+
+    </div>
+
+   </div>
+
+  <% end %>
+
+</div>
+
+  

@@ -1,0 +1,329 @@
+<!-- 
+<%# Turbo に通常リロードを強制（mapster が確実に動くようにする） %>
+<meta name="turbo-visit-control" content="reload">
+-->
+
+
+<div class="map-wrapper">
+  <!-- <%= image_tag "tokyo-map.png", usemap: "#tokyo-map", alt: "東京エリアマップ", id: "tokyo-map" %> -->
+  <%= image_tag "tokyo-map.png", alt: "東京エリアマップ", class: "map-image" %>
+
+  <map name="tokyo-map">
+
+  <!-- 西部
+    <area 
+      shape="poly"
+      coords="484,485,489,499,492,514,493,529,499,539,501,559,491,571,490,582,490,593,497,605,502,615,499,621,500,633,508,633,523,636,531,642,545,646,566,655,576,663,598,676,608,686,620,694,634,706,644,711,660,718,685,780,740,812,728,835,740,843,769,843,784,834,794,835,797,842,815,827,856,833,920,873,961,843,954,831,938,839,927,826,924,808,915,791,917,776,914,761,914,731,894,714,888,696,873,676,862,654,853,639,857,626,838,623,823,623,808,620,799,608,790,594,774,589,771,577,752,566,733,553,715,536,705,526,689,518,681,518,678,509,672,500,663,498,652,494,653,484,665,473,676,456,685,453,697,438,701,430,702,414,709,407,712,400,697,396,691,389,683,372,682,359,687,341,689,326,698,317,714,313,725,313,732,326,739,317,748,309,760,308,769,307,773,315,789,306,797,313,809,314,819,314,828,318,842,333,857,339,881,317,841,290,847,286,851,279,836,271,849,254,855,250,852,242,834,248,809,233,811,213,811,201,809,188,797,190,790,189,766,185,752,178,737,174,715,167,682,163,657,163,639,166,620,167,611,168,600,176,592,187,583,197,575,208,571,225,571,235,573,243,557,247,555,240,518,239,524,231,516,220,500,218,457,252,443,260,457,288,445,368,510,406,492,438,506,452,499,457,506,469,494,470,492,478"
+      href="<%= nominomis_seibu_path %>"
+      alt="西部"
+      title="西部"
+    >
+
+   -->
+
+   <!-- 西部 -->
+   <%= link_to "", nominomis_seibu_path, class: "map-area area-seibu" %>
+
+
+    <!-- 東部 -->
+    <area 
+      shape="poly"
+      coords="861,339,866,344,866,352,871,380,875,390,875,400,883,418,898,423,908,431,918,438,923,461,921,480,919,494,918,503,928,513,924,522,925,530,930,552,925,544,923,550,916,557,907,562,899,566,892,575,889,590,882,596,879,622,956,717,982,703,999,696,1009,677,1018,655,1027,632,1027,596,1026,557,1037,555,1044,559,1057,577,1090,585,1117,567,1128,479,1196,426,1180,393,1156,368,1154,312,1134,288,1114,244,1136,223,1139,209,1130,207,1115,212,1094,198,1102,184,1097,168,1073,172,1072,183,1027,162,1007,179,990,172,991,123,984,133,972,135,952,139,934,142,908,138,874,116,863,129,851,131,839,139,856,166,852,186,812,213,810,233,836,247,853,238,856,248,839,269,852,277,846,285,881,317"
+      href="<%= nominomis_tobu_path %>"
+      alt="東部"
+      title="東部"
+    >
+
+    -->
+
+    <!-- 東部 -->
+    <%= link_to "", nominomis_tobu_path, class: "map-area area-tobu" %>
+
+
+
+    <!-- 都心 -->
+    <area 
+      shape="poly"
+      coords="828,414,843,416,863,421,872,423,878,412,891,421,899,424,907,430,915,436,924,460,924,481,923,498,917,529,890,559,875,552,883,534,864,542,858,557,858,573,855,580,845,593,842,609,834,617,826,617,810,617,797,603,792,593,779,591,773,576,778,539,755,520,771,479,788,472,806,447,812,436,821,423"
+      href="<%= nominomis_toshin_path %>"
+      alt="都心"
+      title="都心"
+    >
+    -->
+
+    <!-- 都心 -->
+    <%= link_to "", nominomis_toshin_path, class: "map-area area-toshin" %>
+
+
+    <!-- 副都心 -->
+    <area 
+      shape="poly"
+      coords="733,327,726,312,703,316,689,331,688,347,684,371,690,385,702,391,712,394,707,408,702,431,694,443,676,458,662,476,651,493,670,497,683,517,702,522,716,534,736,552,771,575,778,541,757,521,770,479,789,468,827,413,851,417,870,421,879,411,874,380,865,343,843,333,828,320,797,313,789,307,775,313,772,305,754,307"
+      href="<%= nominomis_fukutoshin_path %>"
+      alt="副都心"
+      title="副都心"
+    >
+
+    -->
+
+    <!-- 副都心 -->
+    <%= link_to "", nominomis_fukutoshin_path, class: "map-area area-fukutoshin" %>
+
+
+  </map>
+</div>
+
+<div class="area-list">
+  <p>西部：北区、板橋区、練馬区、中野区、杉並区、世田谷区、目黒区、品川区、大田区</p>
+  <p>東部：足立区、荒川区、葛飾区、墨田区、台東区、江戸川区、江東区</p>
+  <p>都心：中央区、千代田区、港区</p>
+  <p>副都心：渋谷区、新宿区、豊島区、文京区</p>
+</div>
+
+<h2>二軒目マップ</h2>
+<p class="map-description">ドラッグ&ズームで二軒目スポットを見つける</p>
+
+<!-- <input id="address" type="textbox"> -->
+<!-- <input type="button" value="検索" onclick="codeAddress()"> -->
+
+<div id='map'></div>
+
+
+<style>
+#map {
+  height: 600px;
+  width: 100%;
+}
+</style>
+
+<!-- js部分 -->
+<script>
+    function initMap() {
+
+      //初期表示位置
+      let latlng = new google.maps.LatLng(35.6803997, 139.7690174);
+
+
+      //デザイン
+      let styles = [
+           {
+            stylers: [
+             { "saturation": 0 },
+             { "lightness": 0 }
+            ]
+           }
+          ];
+
+      let map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          styles: styles,
+          center: latlng
+      });
+      let transitLayer = new google.maps.TransitLayer();
+      transitLayer.setMap(map);
+
+//複数マーカー ここから
+      <% @nominomis.each do |nominomi|%>
+        ( function() { 
+          let markerLatLng = { lat: <%= nominomi.lat %>, lng: <%= nominomi.lng %> }; // 緯度経度のデータ作成
+          let marker = new google.maps.Marker({ 
+            position: markerLatLng, 
+            map: map 
+          });
+//マーカーをクリックしたとき、詳細情報を表示
+          let infowindow = new google.maps.InfoWindow({
+            position: markerLatLng,
+            content: "<a href='<%= nominomi_url(nominomi.id) %>' target='_blank'><%= nominomi.spotname %></a>"
+          }); //ここで詳細ページへのリンクを表示させる
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+
+       })();
+      <% end %>
+      //複数マーカー ここまで  
+  }
+
+</script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCig63KB2U0NRF2me-DsdqYN5EgPhXUHLU&callback=initMap" async defer></script>
+
+
+<div class="filter-section">
+
+  <%= form_tag({controller:"nominomis",action:"index"}, method: :get) do %>
+
+    <!-- チェックボックスを横並びにする部分 -->
+    <ul class="filter-tags">
+      <% Tag.all.each do |t| %>
+        <li>
+          <label>
+            <%= check_box :tag_ids, t.name %>
+            <%= t.name %>
+          </label>
+        </li>
+      <% end %>
+    </ul>
+
+    <!-- 絞り込みボタンを右寄せ -->
+    <div class="filter-submit">
+      <%= submit_tag '絞り込み' %>
+    </div>
+
+  <% end %>
+
+  <!-- タグ追加エリア -->
+  <div class="add-tag-section">
+    <span>＊タグを追加する</span>
+
+    <%= form_tag({controller:"nominomis",action:"index"}, method: :get, class: "add-tag-form") do %>
+      <%= text_field_tag :tag %>
+      <%= submit_tag '追加' %>
+    <% end %>
+  </div>
+
+</div>
+
+
+
+<div class="nominomis-container">
+
+<h2>二軒目スポット一覧</h2>
+
+  <% @nominomis.each do |t| %>
+   <div class="nominomi">
+
+    <div class="main-box">
+
+    <!-- 画像用の枠：画像がなくてもこの枠は必ず存在させる -->
+     <div class="image-wrapper">
+      <% if t.image.attached? %>
+       <%= image_tag t.image, class: "spot-image" %>
+      <% end %>
+     </div>
+
+    <!-- 右側のテキスト＋ボタン部分をまとめる -->
+     <div class="content-wrapper">
+
+      <!--<%= link_to t.user.name, user_path(t.user.id) %>-->
+      <!--<%= t.user.email %>-->
+
+      <!--
+      <% if t.image.attached? %>
+            <%= image_tag t.image, width: 250, class: "spot-image" %>
+      <% end %>
+      -->
+
+
+      <div class="left-container">
+       <p class="spot-name"><%= t.spotname %></p>
+
+        <p class="spot-item">
+          <span class="label">営業時間：</span>
+          <%= t.time %>
+        </p>
+
+        <p class="spot-item">
+          <span class="label">席数：</span>
+          <%= t.seat %>
+        </p>
+
+        <p class="spot-item">
+          <span class="label">メニュー：</span>
+          <%= t.menu %>
+        </p>
+
+        <p class="spot-item">
+          <span class="label">ひとこと：</span>
+          <%= t.tips %>
+        </p>
+
+        <p class="spot-item">
+          <%= link_to "食べログで見る", t.tabe,
+                      target: "_blank", rel: "noopener",
+                      class: "tabelog-link" %>
+        </p>
+
+        </div>
+
+        <div class="right-container">
+
+          <% if user_signed_in? %>
+
+           <% if current_user.already_liked?(t) %>
+              <%= button_to nominomi_like_path(id: t.id, nominomi_id: t.id), method: :delete, class: "like-button" do %>
+              <i class="fa-regular fa-heart"></i><%= t.likes.count %>
+           <% end %>
+
+           <% else %>
+              <%= button_to nominomi_likes_path(id: t.id, nominomi_id: t.id), method: :post, class: "like-button" do %>
+              <i class="fa-regular fa-heart"></i><%= t.likes.count %>
+           <% end %>
+
+          <% end %>
+
+          <% else %>
+            <i class="fa-regular fa-heart"></i><%= t.likes.count %>
+          <% end %>              
+
+        
+         <%= link_to "詳細", nominomi_path(t.id), class: "action-button detail" %>
+         <% if user_signed_in? && current_user.id == t.user_id %>
+          <%= link_to "編集", edit_nominomi_path(t.id), class: "action-button edit" %>
+          <%= button_to "削除", nominomi_path(t.id), method: :delete, class: "action-button delete-btn" %> 
+         <% end %> 
+
+        </div>
+
+
+      
+
+      
+      </div>
+
+    </div>
+
+   </div>
+
+  <% end %>
+
+</div>
+
+
+
+<!-- 
+
+<script>
+  window.onload = function() {
+    imageMapResize();
+  };
+</script>
+
+
+<script>
+  // ページと画像が完全に読み込まれてから実行
+  $(window).on('load', function () {
+
+    // 念のため既存の設定を解除（リロード時の二重初期化防止）
+    $('#tokyo-map').mapster('unbind');
+
+    // 画像マップをリサイズ対応にする（画像が縮小されても座標が合うように）
+    imageMapResize();
+
+    // ホバー時にエリアを塗りつぶす設定
+    $('#tokyo-map').mapster({
+      fill: true,
+      fillColor: 'ff0000',   // ホバー時の色（赤）
+      fillOpacity: 0.4,      // 透過度（0〜1）
+      stroke: true,
+      strokeColor: 'ffffff', // 外枠の色
+      strokeWidth: 2,
+      singleSelect: false    // クリックしても選択状態を保持しない
+    });
+  });
+</script>
+
+
+ -->
+

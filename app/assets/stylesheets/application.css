@@ -1,0 +1,724 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+
+
+/*ヘッダーとフッター*/
+
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  min-height: 100vh;
+  position: relative; 
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ",
+    Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+header {
+  background-color: #f3f4f5;
+  height: 80px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header a {
+  color: rgb(17, 1, 1); 
+  text-decoration: none; 
+}
+header h1 {
+  color: rgb(0, 4, 5);
+  margin-left: 20px;
+}
+.header-list {
+  display: flex;
+  align-items: center;
+}
+header ul {
+  display: flex;
+}
+header li {
+  list-style: none;
+  margin-right: 40px;
+}
+
+footer {
+  color: white;
+  height: 15px;
+  background-color: #000;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: fixed;
+  justify-content: flex-end;
+}
+
+
+
+.seibu-title {
+  margin-top: 40px;
+}
+
+.tobu-title {
+  margin-top: 40px;
+}
+
+.toshin-title {
+  margin-top: 40px;
+}
+
+.fukutoshin-title {
+  margin-top: 40px;
+}
+
+
+
+
+/*index 地図*/
+
+<!--
+.map-container {
+  width: 600px; /* 必要なら変更 */
+  margin: 0 auto;
+}
+.map-container img {
+  width: 100%;
+  height: auto;
+}
+
+-->
+
+.map-wrapper {
+  position: relative;
+  width: 1272px;      /* 画像の横幅に合わせる */
+  height: 920px;      /* 画像の縦幅に合わせる */
+  max-width: 100%;    /* 画面が狭いときは縮小だけされる */
+  margin: 0 auto;
+}
+
+.map-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 共通：透明レイヤー */
+.map-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1272px;
+  height: 920px;
+  display: block;
+  /* 初期状態は完全透明でクリックだけ通す */
+  background: transparent;
+}
+
+/* ホバー時の色（ここを変えれば色変更可能） */
+.map-area:hover {
+  background: rgba(255, 0, 0, 0.35); /* 赤・35% 不透明 */
+}
+
+/* --- ここから各エリアの形 --- */
+
+/* 西部 */
+.area-seibu {
+  clip-path: polygon(
+    484px 485px,489px 499px,492px 514px,493px 529px,499px 539px,501px 559px,491px 571px,
+    490px 582px,490px 593px,497px 605px,502px 615px,499px 621px,500px 633px,508px 633px,
+    523px 636px,531px 642px,545px 646px,566px 655px,576px 663px,598px 676px,608px 686px,
+    620px 694px,634px 706px,644px 711px,660px 718px,685px 780px,740px 812px,728px 835px,
+    740px 843px,769px 843px,784px 834px,794px 835px,797px 842px,815px 827px,856px 833px,
+    920px 873px,961px 843px,954px 831px,938px 839px,927px 826px,924px 808px,915px 791px,
+    917px 776px,914px 761px,914px 731px,894px 714px,888px 696px,873px 676px,862px 654px,
+    853px 639px,857px 626px,838px 623px,823px 623px,808px 620px,799px 608px,790px 594px,
+    774px 589px,771px 577px,752px 566px,733px 553px,715px 536px,705px 526px,689px 518px,
+    681px 518px,678px 509px,672px 500px,663px 498px,652px 494px,653px 484px,665px 473px,
+    676px 456px,685px 453px,697px 438px,701px 430px,702px 414px,709px 407px,712px 400px,
+    697px 396px,691px 389px,683px 372px,682px 359px,687px 341px,689px 326px,698px 317px,
+    714px 313px,725px 313px,732px 326px,739px 317px,748px 309px,760px 308px,769px 307px,
+    773px 315px,789px 306px,797px 313px,809px 314px,819px 314px,828px 318px,842px 333px,
+    857px 339px,881px 317px,841px 290px,847px 286px,851px 279px,836px 271px,849px 254px,
+    855px 250px,852px 242px,834px 248px,809px 233px,811px 213px,811px 201px,809px 188px,
+    797px 190px,790px 189px,766px 185px,752px 178px,737px 174px,715px 167px,682px 163px,
+    657px 163px,639px 166px,620px 167px,611px 168px,600px 176px,592px 187px,583px 197px,
+    575px 208px,571px 225px,571px 235px,573px 243px,557px 247px,555px 240px,518px 239px,
+    524px 231px,516px 220px,500px 218px,457px 252px,443px 260px,457px 288px,445px 368px,
+    510px 406px,492px 438px,506px 452px,499px 457px,506px 469px,494px 470px,492px 478px
+  );
+}
+
+/* 東部 */
+.area-tobu {
+  clip-path: polygon(
+    861px 339px,866px 344px,866px 352px,871px 380px,875px 390px,875px 400px,
+    883px 418px,898px 423px,908px 431px,918px 438px,923px 461px,921px 480px,
+    919px 494px,918px 503px,928px 513px,924px 522px,925px 530px,930px 552px,
+    925px 544px,923px 550px,916px 557px,907px 562px,899px 566px,892px 575px,
+    889px 590px,882px 596px,879px 622px,956px 717px,982px 703px,999px 696px,
+    1009px 677px,1018px 655px,1027px 632px,1027px 596px,1026px 557px,1037px 555px,
+    1044px 559px,1057px 577px,1090px 585px,1117px 567px,1128px 479px,1196px 426px,
+    1180px 393px,1156px 368px,1154px 312px,1134px 288px,1114px 244px,1136px 223px,
+    1139px 209px,1130px 207px,1115px 212px,1094px 198px,1102px 184px,1097px 168px,
+    1073px 172px,1072px 183px,1027px 162px,1007px 179px,990px 172px,991px 123px,
+    984px 133px,972px 135px,952px 139px,934px 142px,908px 138px,874px 116px,
+    863px 129px,851px 131px,839px 139px,856px 166px,852px 186px,812px 213px,
+    810px 233px,836px 247px,853px 238px,856px 248px,839px 269px,852px 277px,
+    846px 285px,881px 317px
+  );
+}
+
+/* 都心 */
+.area-toshin {
+  clip-path: polygon(
+    828px 414px,843px 416px,863px 421px,872px 423px,878px 412px,891px 421px,
+    899px 424px,907px 430px,915px 436px,924px 460px,924px 481px,923px 498px,
+    917px 529px,890px 559px,875px 552px,883px 534px,864px 542px,858px 557px,
+    858px 573px,855px 580px,845px 593px,842px 609px,834px 617px,826px 617px,
+    810px 617px,797px 603px,792px 593px,779px 591px,773px 576px,778px 539px,
+    755px 520px,771px 479px,788px 472px,806px 447px,812px 436px,821px 423px
+  );
+}
+
+/* 副都心 */
+.area-fukutoshin {
+  clip-path: polygon(
+    733px 327px,726px 312px,703px 316px,689px 331px,688px 347px,684px 371px,
+    690px 385px,702px 391px,712px 394px,707px 408px,702px 431px,694px 443px,
+    676px 458px,662px 476px,651px 493px,670px 497px,683px 517px,702px 522px,
+    716px 534px,736px 552px,771px 575px,778px 541px,757px 521px,770px 479px,
+    789px 468px,827px 413px,851px 417px,870px 421px,879px 411px,874px 380px,
+    865px 343px,843px 333px,828px 320px,797px 313px,789px 307px,775px 313px,
+    772px 305px,754px 307px
+  );
+}
+
+
+
+.area-list {
+  margin-bottom: 40px; /* ←ここを好みで調整（40〜80pxが自然） */
+  line-height: 1.8;    /* （任意）行間を少しゆったり */
+}
+
+.map-description {
+  margin-bottom: 30px; /* ←ここを好みで調整（30〜60pxぐらいが自然） */
+}
+
+
+
+/*index タグ*/
+
+/* 全体ブロック */
+.filter-section {
+  margin: 30px 0;
+}
+
+/* チェックボックスの並び */
+.filter-tags {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+  display: flex;
+  flex-wrap: wrap;       /* 画面幅に応じて折り返し */
+  gap: 10px 30px;        /* 縦・横の余白（お好みで調整） */
+}
+
+.filter-tags li {
+  margin: 0;
+}
+
+.filter-tags label {
+  white-space: nowrap;   /* 項目名を1行で表示 */
+}
+
+/* 絞り込みボタンを右側に */
+.filter-submit {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* タグ追加エリア（中央寄せ） */
+.add-tag-section {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;             /* 「＊タグを追加する」とフォームの間 */
+}
+
+/* タグ追加フォームを横並びに */
+.add-tag-form {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.add-tag-form input[type="text"] {
+  padding: 4px 8px;
+  font-size: 16px;
+}
+
+.add-tag-form input[type="submit"] {
+  padding: 4px 4px;
+  font-size: 15px;
+}
+
+.filter-submit input[type="submit"] {
+  font-size: 15px;
+}
+
+
+
+/*index 投稿一覧*/
+
+/* 実際の画像は枠内で比率維持してフィットさせる */
+.spot-image {
+  max-width: 100%;
+  max-height: 100%;
+  /*　object-fit: cover;　*/
+  object-fit: contain; /* ★ 枠内に収める（切れない） */
+}
+
+/* 画像用の枠（有無にかかわらず一定の幅と高さ） */
+.image-wrapper {
+  width: 260px;      /* ★ 画像部分の横幅 */
+  height: 260px;     /* ★ 画像部分の高さ */
+  flex-shrink: 0;
+  background: #ffffff; /* ★ 背景白に変更 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 右側のテキスト＆ボタンの領域 */
+.content-wrapper {
+  flex: 1;
+  margin-left: 20px;
+}
+
+
+.nominomis-container {
+  width: 50%;
+  margin: 10px auto;
+  padding-top: 30px;
+  padding-bottom: 50px;
+}
+.nominomis-containar h2 {
+  width: 100px;
+  margin: 30px auto;
+  text-align: center;
+}
+.nominomi {
+  border-top: solid #000000;
+  margin-top: 10px;
+  padding-top: 20px;
+}
+.main-box {
+  margin: 5px 0;
+  display: flex;
+  /*align-items: flex-start;*/
+  align-items: center;
+  /* justify-content: space-between; */
+}
+.time {
+  display: flex;
+  justify-content: flex-end;
+}
+
+
+/* タイトル h2 用のセレクタ、綴りを修正 */
+.nominomis-container h2 {
+  margin: 30px 0;
+  border-bottom: 2px solid #000;
+}
+
+/* 左側テキストエリア */
+.left-container {
+  margin-bottom: 8px;
+  /* margin-left: 15px;
+  flex: 1; */
+}
+
+/* 店名を目立たせる */
+.spot-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 0 8px;
+}
+
+/* 各項目行 */
+.spot-item {
+  margin: 2px 0;
+  line-height: 1.6;
+}
+
+/* 「営業時間：」などのラベル */
+.spot-item .label {
+  font-weight: bold;
+}
+
+/* 食べログリンク */
+.tabelog-link {
+  color: #0000ee;
+  text-decoration: underline;
+}
+
+
+.right-container {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.right-container a,
+.right-container form {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+
+/* ボタン系のベースデザイン */
+.action-button {
+  display: inline-block;
+  padding: 3px 6px;
+  margin-left: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  text-decoration: none;
+  border: 1px solid #555;
+  color: #333;
+  background: #f7f7f7;
+  transition: 0.2s ease;
+}
+
+/* hover */
+.action-button:hover {
+  background: #e5e5e5;
+}
+
+/* --- 詳細ボタン（黒系） --- */
+.action-button.detail {
+  border-color: #333;
+}
+
+/* --- 編集ボタン（青系） --- */
+.action-button.edit {
+  color: #333;
+  border-color: #333;
+}
+
+.action-button.edit:hover {
+  background: rgba(10, 87, 255, 0.1);
+}
+
+/* --- 削除ボタン（赤系） --- */
+.delete-btn {
+  color: #c00000;
+  border-color: #c00000;
+  background: #fff;
+}
+
+.delete-btn:hover {
+  background: #ffe5e5;
+}
+
+/* 削除の form（button_to）用に inline 対応 */
+.right-container form {
+  display: inline-block;
+  margin: 0;
+}
+
+.like-button {
+  width: 55px;           /* ボタンの幅 */
+  height: 55px;          /* ボタンの高さ（正円にするため同じ値） */
+  border-radius: 50%;    /* 丸くする */
+  border: 2px solid #e86;/* ボーダー色（ピンク系） */
+  background: #fff;      /* 背景 */
+  color: #e86;           /* 文字・アイコンの色 */
+  display: flex;         /* 中央寄せのためにflex使用 */
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;       /* アイコン・数字を大きく */
+  cursor: pointer;
+  margin-right: 10px;    /* 右のボタンとの間隔 */
+}
+
+.like-button:hover {
+  background: #ffe6e6;   /* ホバー時の淡い赤 */
+  border-color: #ff6688;
+}
+
+.like-button i {
+  margin-right: 4px;     /* ♥ と数字の間隔 */
+}
+
+
+
+/* ======= 二分割レイアウト ======= */
+.two-column-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;   /* 左右2カラム */
+  gap: 40px;                        /* カラム間の余白 */
+  margin: 20px auto;
+  width: 90%;                       /* 全体幅の調整 */
+  max-width: 1200px;
+  position: relative;
+}
+
+/* 縦の仕切り線 */
+.two-column-wrapper::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: #ccc;
+}
+
+/* カラムタイトル */
+.left-column h2,
+.right-column h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+/* ▼ プロフィール全体の枠 */
+.profile-wrapper {
+  width: 80%;
+  max-width: 500px;
+  margin: 20px 0 40px 10%;  /* ← 左寄せ ＋ 少しだけ余白を開ける */
+  padding: 0 10px;
+  padding-top: 40px;
+  padding-bottom: 50px;
+}
+
+/* ▼ タイトル */
+.mypage-title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* ▼ テキスト項目 */
+.profile-item {
+  font-size: 16px;
+  margin: 6px 0;
+}
+
+.label {
+  font-weight: bold;
+}
+
+/* ▼ 編集ボタンを右下に寄せる */
+.profile-edit-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;   /* ← ここで上の余白を調整（小さく） */
+  margin-bottom: 5;  /* ← 下の余白も調整 */
+ } 
+
+/* ▼ 編集ボタン */
+.profile-edit-btn {
+  font-size: 14px;
+  padding: 4px 10px;
+  border: 1px solid #888;
+  border-radius: 5px;
+  background: #fafafa;
+  text-decoration: none;
+  color: black;
+}
+
+.profile-edit-btn:hover {
+  background: #e9e9e9;
+}
+
+/* ▼ プロフィール部分と2カラム間の余白 */
+.two-column-wrapper {
+  width: 90%;
+  margin: 40px auto 80px;
+}
+
+
+
+
+
+
+
+/*new page */
+
+
+/* ▼ 全体フォームの中央寄せレイアウト */
+.new-spot-wrapper {
+  width: 80%;
+  max-width: 900px;
+  margin: 40px auto 80px;
+  padding: 20px 30px;
+}
+
+/* ▼ 見出し */
+.new-spot-wrapper h3 {
+  font-size: 26px;
+  margin-bottom: 25px;
+}
+
+/* ▼ フォームの各項目 */
+.field {
+  margin-bottom: 18px;
+}
+
+/* ▼ label */
+.field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+/* ▼ input と textarea の統一デザイン */
+.field input[type="text"],
+.field input[type="file"],
+.field textarea,
+#address {
+  width: 100%;
+  max-width: 700px;
+  padding: 8px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+}
+
+/* ▼ セレクト（エリア選択） */
+select {
+  width: 250px;
+  padding: 6px;
+  margin: 10px 0 20px;
+  font-size: 14px;
+}
+
+/* ▼ タグ一覧 */
+.form-group {
+  margin: 20px 0 20px;
+}
+.form-check {
+  margin-bottom: 6px;
+}
+
+/* ▼ 地図 */
+#map {
+  width: 100%;
+  max-width: 700px;
+  height: 450px;
+  margin: 30px 0;
+  border: 1px solid #ccc;
+}
+
+/* ▼ マップ説明 */
+.map-text {
+  margin: 10px 0 10px;
+  font-size: 15px;
+}
+
+/* ▼ 経度緯度表示欄 */
+.latlng-wrapper {
+  margin: 25px 0;
+}
+.latlng-wrapper label {
+  margin-right: 6px;
+}
+.latlng-wrapper input {
+  width: 200px;
+  padding: 6px 8px;
+  margin-right: 20px;
+}
+
+/* ▼ 送信ボタン */
+.submit-btn {
+  display: block;
+  margin: 40px auto 0;
+  padding: 10px 24px;
+  font-size: 16px;
+  border: 1px solid #555;
+  background: #f7f7f7;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.submit-btn:hover {
+  background: #e5e5e5;
+}
+
+
+
+/* ▼ 緯度・経度・送信ボタンのブロック全体を右寄せ */
+.right-align-block {
+  text-align: right;
+  margin-top: 20px;
+}
+
+/* 緯度・経度入力欄（右揃えでも inline のまま） */
+.right-align-block input[type="text"] {
+  width: 200px;
+  padding: 6px 8px;
+  margin-left: 10px;
+}
+
+/* 送信ボタンを右寄せ */
+.right-align-block .submit-btn {
+  display: inline-block;
+  margin-top: 20px;
+}
+
+
+/* ▼ 緯度・経度・送信ボタンのブロック全体を右寄せ */
+.right-align-block {
+  text-align: right;
+  margin-top: 20px;
+}
+
+/* 緯度・経度入力欄（右揃えでも inline のまま） */
+.right-align-block input[type="text"] {
+  width: 200px;
+  padding: 6px 8px;
+  margin-left: 10px;
+}
+
+/* 送信ボタンを右寄せ */
+.right-align-block .submit-btn {
+  display: inline-block;
+  margin-top: 20px;
+}
+
+
+/* 検索ボタンの文字サイズアップ */
+#address + input[type="button"] {
+  font-size: 15px;        /* ← ボタン文字を大きく */
+  padding: 3px 10px;      /* ← ボタンの見た目も改善 */
+}
+
+/* 二軒目スポットを投稿する ボタン */
+.submit-btn {
+  font-size: 15px;        /* ← ボタン文字を大きく */
+  padding: 4px 10px;      /* ← ボタン自体も少し立派に */
+}
+
+
+
+
+

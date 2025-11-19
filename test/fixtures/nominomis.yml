@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  spotname: MyString
+  time: MyString
+  seat: MyString
+  menu: MyString
+  tips: MyText
+  tabe: MyString
+
+two:
+  spotname: MyString
+  time: MyString
+  seat: MyString
+  menu: MyString
+  tips: MyText
+  tabe: MyString
